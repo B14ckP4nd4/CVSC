@@ -56,10 +56,10 @@ sudo systemctl start docker && sudo systemctl enable docker
 # ==================================================
 
 # first Decrypt them
-git-crypt unlock secret
+# git-crypt unlock secret
 
 # fix endline
-find . -type f -print0 | xargs -0 dos2unix --
+# find . -type f -print0 | xargs -0 dos2unix --
 
 # copy
 yes | cp -rf ./root/* /
@@ -67,10 +67,16 @@ yes | cp -rf ./root/* /
 # make them Executable
 chmod +x /etc/cvsc
 chmod +x /usr/local/bin/*
+chmod +x /etc/systemd/system/cvsc.service
+
+# run it and make it startup
+sudo systemctl start cvsc
+sudo systemctl enable cvsc
 
 # ==================================================
-# ================== Get The Key ===================
+# ============== copy the master key ===============
 # ==================================================
 
+yes | mv -rf secret /etc/cvsc
 
-# yes | rm -f $0
+yes | rm -f $0
