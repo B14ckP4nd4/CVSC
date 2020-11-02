@@ -56,13 +56,13 @@ sudo systemctl start docker && sudo systemctl enable docker
 # ==================================================
 
 # check secret is exist
-if [ ! -f "./secret" ];then
+if [ ! -f "$1" ];then
   echo " Secret File dosn't exist "
   exit
 fi
 
 # first Decrypt them
-git-crypt unlock secret
+git-crypt unlock $1
 
 # fix endline
 find ./root/etc/* -type f -print0 | xargs -0 dos2unix --
