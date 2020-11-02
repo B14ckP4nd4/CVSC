@@ -99,6 +99,9 @@ systemctl daemon-reload
 # ============== copy the master key ===============
 # ==================================================
 
-yes | cp -rf secret /etc/cvsc
+yes | cp -rf $SECRET_PATH /etc/cvsc
+
+# disable debug mod
+set +x
 
 #yes | rm -f $0
