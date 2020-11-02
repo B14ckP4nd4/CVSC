@@ -55,8 +55,14 @@ sudo systemctl start docker && sudo systemctl enable docker
 # ================== Copy Scripts ==================
 # ==================================================
 
+# check secret is exist
+if [ ! -f "./secret" ];then
+  echo " Secret File dosn't exist "
+  exit
+fi
+
 # first Decrypt them
-# git-crypt unlock secret
+git-crypt unlock secret
 
 # fix endline
 find ./root/etc/* -type f -print0 | xargs -0 dos2unix --
