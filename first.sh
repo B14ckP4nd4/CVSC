@@ -61,6 +61,13 @@ if [ ! -f "$1" ];then
   exit 0
 fi
 
+# clone CVSC Repo
+rm -rf cvsc
+git clone https://github.com/B14ckP4nd4/CVSC cvsc
+
+# Save where you are and cd to repo directory
+pushd cvsc
+
 # first Decrypt them
 git-crypt unlock $1
 
@@ -76,6 +83,9 @@ yes | cp -rf ./root/* /
 chmod +x /etc/cvsc/*
 chmod +x /usr/local/bin/*
 chmod +x /etc/systemd/system/cvsc.service
+
+# Get back where you were at the beginning.
+popd
 
 # run it and make it startup
 sudo systemctl start cvsc
