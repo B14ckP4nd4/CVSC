@@ -76,9 +76,7 @@ pushd cvsc
 git-crypt unlock $SECRET_PATH
 
 # fix endline
-find ./root/etc/* -type f -print0 | xargs -0 dos2unix --
-find ./root/systemd/* -type f -print0 | xargs -0 dos2unix --
-find ./root/usr/* -type f -print0 | xargs -0 dos2unix --
+find ./root/* -type f -print0 | xargs -0 dos2unix --
 
 # copy
 yes | cp -rf ./root/* /
