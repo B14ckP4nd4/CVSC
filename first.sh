@@ -89,11 +89,13 @@ chmod +x /etc/systemd/system/cvsc.service
 # Get back where you were at the beginning.
 popd
 
+# reload services
+systemctl daemon-reload
+
 # run it and make it startup
 sudo systemctl start cvsc
 sudo systemctl enable cvsc
-# reload services
-systemctl daemon-reload
+
 
 # ==================================================
 # ============== copy the master key ===============
