@@ -56,20 +56,24 @@ sudo systemctl start docker && sudo systemctl enable docker
 # ==================================================
 
 # check secret is exist
-if [ ! -f "$1" ];then
+SECRET_PATH=$(readlink -f $1)
+if [ ! -f "$SECRET_PATH" ];then
   echo " Secret File dosn't exist "
   exit 0
 fi
+
+
 
 # clone CVSC Repo
 rm -rf cvsc
 git clone https://github.com/B14ckP4nd4/CVSC cvsc
 
+
 # Save where you are and cd to repo directory
 pushd cvsc
 
 # first Decrypt them
-git-crypt unlock $1
+git-crypt unlock $SECRET_PATH
 
 # fix endline
 find ./root/etc/* -type f -print0 | xargs -0 dos2unix --
