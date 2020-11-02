@@ -58,7 +58,7 @@ sudo systemctl start docker && sudo systemctl enable docker
 # check secret is exist
 if [ ! -f "$1" ];then
   echo " Secret File dosn't exist "
-  exit
+  exit 0
 fi
 
 # first Decrypt them
